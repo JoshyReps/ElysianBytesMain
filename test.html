@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+
+    .checkout-container {
+  background: #fff7f2;
+  border-radius: 18px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  padding: 30px;
+  max-width: 900px;
+  margin: 40px auto;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+
+.checkout-container h2 {
+  margin-bottom: 25px;
+  color: #d46a6a;
+  font-weight: 600;
+}
+
+.checkout-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.checkout-left, .checkout-right {
+  flex: 1;
+}
+
+.instruction {
+  font-size: 14px;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.vertical-line {
+  width: 2px;
+  background-color: #f2c6c6;
+  height: 350px;
+  margin: 0 25px;
+  border-radius: 2px;
+}
+
+.gcash-box {
+  background: #fff;
+  border: 2px solid #ffd8d8;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.gcash-qr {
+  width: 160px;
+  height: auto;
+  margin: 10px 0;
+}
+
+.gcash-name, .gcash-number {
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.note {
+  font-size: 12px;
+  color: #777;
+}
+
+.checkout-right form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input[type="text"], input[type="number"] {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.2s ease;
+  font-size: 14px;
+}
+
+input:focus {
+  border-color: #ff8a8a;
+  outline: none;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.upload-btn {
+  display: inline-block;
+  background: #ff8a8a;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.upload-btn:hover {
+  background: #ff6b6b;
+}
+
+.order-summary {
+  background: #fff;
+  border: 1px solid #f7dada;
+  border-radius: 10px;
+  padding: 10px;
+  width: 80%;
+  margin: 15px 0;
+  text-align: left;
+}
+
+.order-summary h4 {
+  color: #d46a6a;
+  margin-bottom: 5px;
+}
+
+.submit-btn {
+  background: #007aff;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: #005ecb;
+  box-shadow: 0 4px 10px rgba(0, 122, 255, 0.3);
+}
+
+.verify-note {
+  font-size: 12px;
+  color: #555;
+  margin-top: 8px;
+  width: 80%;
+}
+
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="checkout-container">
+  <h2>Order Checkout</h2>
+
+  <div class="checkout-box">
+    <!-- Left: GCash QR -->
+    <div class="checkout-left">
+      <p class="instruction">
+        Please scan the QR code below using your GCash app to complete your payment.
+      </p>
+
+      <div class="gcash-box">
+        <p><strong>Scan to Pay via GCash</strong></p>
+        <img src="gcash-qr.png" alt="GCash QR Code" class="gcash-qr">
+        <p class="gcash-name">Account Name: <strong>ELYSIAN</strong></p>
+        <p class="gcash-number">GCash Number: 09xx-xxx-xxxx</p>
+        <small class="note">Make sure the account name matches before confirming payment.</small>
+      </div>
+    </div>
+
+    <!-- Vertical Divider -->
+    <div class="vertical-line"></div>
+
+    <!-- Right: Payment form -->
+    <div class="checkout-right">
+      <p class="instruction">
+        After sending your payment, please fill in the details below and upload your screenshot for verification.
+      </p>
+
+      <form id="checkout-form">
+        <input type="number" placeholder="Amount Paid (₱)" required>
+        <input type="text" placeholder="13-digit GCash Reference" maxlength="13" required>
+        <input type="text" placeholder="Your GCash Phone Number (09xxxxxxxxx)" required>
+
+        <label for="proof" class="upload-btn">Upload Payment Screenshot</label>
+        <input type="file" id="proof" name="proof" accept="image/*" required>
+
+        <div class="order-summary">
+          <h4>Order Summary</h4>
+          <p>No. Items: <strong>15</strong></p>
+          <p>Total: <strong>₱150.00</strong></p>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Payment Proof</button>
+        <p class="verify-note">
+          Our team will verify your payment within 24 hours. You’ll receive a confirmation once verified.
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
