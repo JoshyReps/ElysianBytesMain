@@ -1,0 +1,102 @@
+<% if(locals.user) { %>
+    <%- include('header-auth') %>
+<% } else { %>
+    <%- include('header') %>
+<% } %>
+
+
+<section id="main-checkout" class="flex-center">
+
+  <h2>Order Checkout</h2>
+
+  <div class="checkout-inner-con flex-center">
+
+    <div class="gcash-con flex-center">
+      <h3>Scan to Pay via GCash </h3>
+      <div class="gcash-img-con flex-center">
+        <img src="images/qr.png" alt="GCash QR" id="img-gcash">
+      </div>
+
+      <p>Account Name: <b>ELYSIAN</b></p>
+      <p>GCash Number: <b>09xx-xxx-xxxx</b></p>
+      <h4>Make sure the account name matches before confirming payment.</h4>
+    </div>
+
+    <div class="input-con flex-center">
+
+      <p>
+        After sending your payment, please fill in the details below and upload your screenshot for verification.
+      </p>
+
+      <form id="checkout-form" action="/upload" method="POST" enctype="multipart/form-data" class="flex-center"></form>
+        <input type="number" name="amount" placeholder="Amount Paid (₱)" required form="checkout-form">
+        <input type="text" name="reference" placeholder="13-digit GCash Reference" required pattern="\d{13}" form="checkout-form">
+        <input type="text" name="phone" placeholder="Your GCash Phone Number (09xxxxxxxxx)" required pattern="09\d{9}" form="checkout-form">
+        <label for="proof" class="upload-btn">Upload Payment Screenshot</label>
+        <input type="file" id="proof" name="proof" accept="image/*" required form="checkout-form">
+    </div>
+
+    <div class="submit flex-center">
+
+      <div class="review">
+        Review Order :
+
+        <% if(locals.cakes) { cakes.forEach(cakes => { %>
+          
+        <div class="review-con flex-center">
+          <div class="review-img flex-center">
+            <img src="images\new\<%=cakes.img%>" alt="">
+          </div>
+          <div class="review-text">
+            <div class="review-name">
+              <%=cakes.name%> x<%=cakes.quantity%>
+            </div>
+            <div class="review-price">
+              <%=cakes.price%>
+            </div>
+          </div>
+        </div>
+
+      <% })} %>
+
+      </div>
+
+      <div class="input flex-center">
+        <% if(locals.orders && locals.total) { %>
+        <div class="flex-center">
+          No. Items
+          <p><%=orders%></p>
+        </div>
+        <div class="flex-center">
+          Total
+          <p>₱<%=total%>.00</p>
+        </div>
+        <% } %>
+        <button type="submit" form="checkout-form">Submit Payment Proof</button>  
+        <h4>We will verify your payment within 24 hours. You’ll receive a confirmation in your email once verified. Thank you for your patience</h4>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="order-note">
+
+            <h3>Meet-Up Information : </h3>
+            <blockquote>
+                Please note: We currently offer <b>meet-up only</b>, not delivery. <br>
+                All orders must be placed <b>5–7 days in advance</b> to give us time to prepare your cake with care. <br> <br>
+
+                Meet-up Location: <br>
+                📍 <b>2FCW+4X9, Rasay St, Toril, Davao City, 8000 Davao del Sur</b> <br> <br>
+
+                Once your order is ready and the meet-up time is confirmed, <b>you’ll receive an email notification</b> with the details. <br>
+                Kindly make sure you can meet at the given location on your scheduled pickup date and time. 
+            </blockquote>
+        </div>
+  
+
+</section>
+
+<%- include('footer') %>
